@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
+// get fs
+const fs = require('fs');
+const dbconfig = JSON.parse(
+    fs.readFileSync(__dirname + "/config/db.json", "utf-8")
+);
+
 // mysql
 const mysql = require('mysql');
 
@@ -22,12 +28,8 @@ app.use(express.static('public'));
 // routes
 app.get('/', (req, res) => {
     // create database connection
-    const conn = mysql.createConnection({
-        host: 'localhost',
-        user: 'reyad',
-        password: '12345678',
-        database: 'express_test'
-    })
+
+    const conn = mysql.createConnection(dbconfig);
     conn.connect();
 
     let name = 'tumpa';

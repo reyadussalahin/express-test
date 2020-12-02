@@ -1,2 +1,5 @@
+# ignoring local db configuration
+config/db.json
+
 # ignoring node_moules/
 node_modules/
